@@ -5,35 +5,32 @@ set -e
 
 echo "⚡ Instalando entorno BSPWM..."
 
-------------------------------
+#------------------------------
+# Actualizar sistema
+#------------------------------
 
-    Actualizar sistema
-
-------------------------------
 echo "🔄 Actualizando paquetes..."
 sudo apt update -y && sudo apt upgrade -y
 
-------------------------------
+#------------------------------
+# Instalar paquetes necesarios
+#------------------------------
 
-    Instalar paquetes necesarios
-
-------------------------------
 echo "📦 Instalando BSPWM, SXHKD y dependencias..."
 sudo apt install -y bspwm sxhkd polybar rofi feh picom neovim zsh git curl wget fonts-firacode
 
-------------------------------
+#------------------------------
+# Copiar configuraciones
+#------------------------------
 
-    Copiar configuraciones
-
-------------------------------
 echo "📁 Copiando configuraciones..."
 
 mkdir -p ~/.config
 
 BSPWM
 mkdir -p ~/.config/bspwm
-cp -r config/bspwm/* ~/.config/bspwm/  true
-chmod +x ~/.config/bspwm/bspwmrc  true
+cp -r config/bspwm/* ~/.config/bspwm/
+chmod +x ~/.config/bspwm/bspwmrc
 
 SXHKD
 mkdir -p ~/.config/sxhkd
@@ -65,19 +62,17 @@ if [ -d "wallpapers" ]; then
     cp -r wallpapers/* ~/Pictures/wallpapers/  true
 fi
 
-------------------------------
+#------------------------------
+# Cambiar shell a ZSH
+#------------------------------
 
-    Cambiar shell a ZSH
-
-------------------------------
 echo "🐚 Cambiando shell a ZSH..."
 chsh -s /usr/bin/zsh  true
 
-------------------------------
+#------------------------------
+# Mensaje final
+#------------------------------
 
-    Mensaje final
-
-------------------------------
 echo ""
 echo "🚀 Instalación completada!"
 echo "Reinicia tu sesión para activar BSPWM."
