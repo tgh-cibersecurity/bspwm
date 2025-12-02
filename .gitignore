@@ -1,0 +1,13 @@
+.ssh/
+.pki/
+.gnupg/
+.cache/
+.local/
+.mozilla/
+BurpSuite/
+Burp/
+.burp/
+*.log
+*.tmp
+*.swp
+.DS_Store
