@@ -1,3 +1,5 @@
+# Ignorar archivos
+
 .ssh/
 .pki/
 .gnupg/
@@ -11,3 +13,14 @@ Burp/
 *.tmp
 *.swp
 .DS_Store
+
+# Ignorar claves y archivos peligrosos
+
+.pub
+id_
+eval*
+
+# Ignorar archivos temporales / de sistema
+
+*.log
+*.swp
