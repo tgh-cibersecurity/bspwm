@@ -27,39 +27,47 @@ echo "📁 Copiando configuraciones..."
 
 mkdir -p ~/.config
 
-BSPWM
+# BSPWM
+
 mkdir -p ~/.config/bspwm
 cp -r config/bspwm/* ~/.config/bspwm/
 chmod +x ~/.config/bspwm/bspwmrc
 
-SXHKD
+# SXHKD
+
 mkdir -p ~/.config/sxhkd
-cp -r config/sxhkd/* ~/.config/sxhkd/  true
+cp -r config/sxhkd/* ~/.config/sxhkd/
 
-Polybar
+# Polybar
+
 mkdir -p ~/.config/polybar
-cp -r config/polybar/* ~/.config/polybar/  true
+cp -r config/polybar/* ~/.config/polybar/
 
-Picom
+# Picom
+
 mkdir -p ~/.config/picom
-cp -r config/picom/* ~/.config/picom/  true
+cp -r config/picom/* ~/.config/picom/
 
-Rofi
+# Rofi 
+
 mkdir -p ~/.config/rofi
-cp -r config/rofi/* ~/.config/rofi/  true
+cp -r config/rofi/* ~/.config/rofi/
 
-Neovim
+# Neovim
+
 mkdir -p ~/.config/nvim
-cp -r config/nvim/* ~/.config/nvim/  true
+cp -r config/nvim/* ~/.config/nvim/
 
-ZSH
+# ZSH 
+
 echo "⚙️ Instalando configuración ZSH..."
-cp -f .zshrc ~/.zshrc  true
+cp -f .zshrc ~/.zshrc
 
-Wallpapers
+# Wallpapers
+
 if [ -d "wallpapers" ]; then
     mkdir -p ~/Pictures/wallpapers
-    cp -r wallpapers/* ~/Pictures/wallpapers/  true
+    cp -r wallpapers/* ~/Pictures/wallpapers/
 fi
 
 #------------------------------
@@ -67,7 +75,7 @@ fi
 #------------------------------
 
 echo "🐚 Cambiando shell a ZSH..."
-chsh -s /usr/bin/zsh  true
+chsh -s /usr/bin/zsh
 
 #------------------------------
 # Mensaje final
