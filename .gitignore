@@ -1,0 +1,27 @@
+# Ignorar archivos
+
+.ssh/
+.pki/
+.gnupg/
+.cache/
+.local/
+.mozilla/
+BurpSuite/
+Burp/
+.burp/
+*.log
+*.tmp
+*.swp
+.DS_Store
+
+# Ignorar claves y archivos peligrosos
+
+.pub
+id_
+eval*
+
+# Ignorar archivos temporales / de sistema
+
+*.log
+*.swp
+install.sh.save
