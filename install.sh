@@ -53,11 +53,6 @@ cp -r config/picom/* ~/.config/picom/
 mkdir -p ~/.config/rofi
 cp -r config/rofi/* ~/.config/rofi/
 
-# Neovim
-
-mkdir -p ~/.config/nvim
-cp -r config/nvim/* ~/.config/nvim/
-
 # ZSH 
 
 echo "⚙️ Instalando configuración ZSH..."
