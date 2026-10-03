@@ -25,3 +25,4 @@ eval*
 *.log
 *.swp
 install.sh.save
+config/nvim/
