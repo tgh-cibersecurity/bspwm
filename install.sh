@@ -2,7 +2,6 @@
 # Instalador del entorno BSPWM — tgh-cibersecurity
 # Compatible con Parrot OS y Kali Linux
 
-# ---------- Colores ----------
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
@@ -37,9 +36,14 @@ sudo apt update -y && sudo apt upgrade -y
 step "Instalando BSPWM, SXHKD y dependencias"
 sudo apt install -y \
     bspwm sxhkd polybar rofi feh picom kitty \
-    zsh git curl wget unzip \
+    zsh git curl wget unzip fzf bat \
     fonts-font-awesome fontconfig \
     network-manager || warn "Algunos paquetes no se pudieron instalar, revisa el log de arriba."
+
+if ! command -v bat >/dev/null 2>&1 && command -v batcat >/dev/null 2>&1; then
+    sudo ln -sf /usr/bin/batcat /usr/local/bin/bat
+    ok "Enlace bat -> batcat creado"
+fi
 
 step "Copiando configuraciones"
 mkdir -p ~/.config
@@ -76,7 +80,22 @@ else
     warn "No se encontro config/polybar/fonts, se omite"
 fi
 
-step "Copiando dotfiles"
+step "Instalando Oh My Zsh y Powerlevel10k"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || warn "No se pudo instalar Oh My Zsh"
+    ok "Oh My Zsh instalado"
+else
+    ok "Oh My Zsh ya estaba instalado"
+fi
+
+if [ ! -d "$HOME/powerlevel10k" ]; then
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/powerlevel10k" > /dev/null 2>&1 || warn "No se pudo clonar Powerlevel10k"
+    ok "Powerlevel10k instalado"
+else
+    ok "Powerlevel10k ya estaba instalado"
+fi
+
+step "Copiando dotfiles (despues de Oh My Zsh, para que no se pisen)"
 for f in .bashrc .fzf.bash .fzf.zsh .p10k.zsh .zshrc; do
     if [ -f "$f" ]; then
         cp -f "$f" ~/"$f"
@@ -85,22 +104,6 @@ for f in .bashrc .fzf.bash .fzf.zsh .p10k.zsh .zshrc; do
         warn "No se encontro $f, se omite"
     fi
 done
-
-step "Configurando ZSH (Oh My Zsh + Powerlevel10k)"
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || warn "No se pudo instalar Oh My Zsh"
-    ok "Oh My Zsh instalado"
-else
-    ok "Oh My Zsh ya estaba instalado"
-fi
-
-P10K_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-if [ ! -d "$P10K_DIR" ]; then
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR" > /dev/null 2>&1 || warn "No se pudo clonar Powerlevel10k"
-    ok "Powerlevel10k instalado"
-else
-    ok "Powerlevel10k ya estaba instalado"
-fi
 
 step "Copiando wallpapers"
 if [ -d "wallpapers" ]; then
