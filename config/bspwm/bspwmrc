@@ -17,7 +17,7 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 wmware-user-suid-wrapper &
-/usr/bin/feh --bg-fill "$HOME/Descargas/abrigo.png" &
+/usr/bin/feh --bg-fill "$HOME/Pictures/wallpapers/abrigo.png" &
 ~/.config/polybar/./launch.sh &
 picom &
 bspc config border_width 0
